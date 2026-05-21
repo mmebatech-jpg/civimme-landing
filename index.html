@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civimme — Intelligence Terrain</title>
+<meta name="description" content="L'application mobile qui remplace le carnet papier sur le chantier. IA, géolocalisation, signatures certifiées. Essai gratuit 30 jours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #0A0A0A;
+  --ink-mid: #1A1A1A;
+  --ink-soft: #2C2C2C;
+  --ink-muted: #6E6E6E;
+  --ink-ghost: #B8B8B8;
+  --white: #FFFFFF;
+  --off-white: #F7F5F2;
+  --paper: #EFECE7;
+  --rule: #E0DDD8;
+  --gold: #A8882A;
+  --gold-light: rgba(168,136,42,0.1);
+  --blue: #1A2F5C;
+  --green: #1A5C32;
+  --red: #8B1A1A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Azeret Mono', monospace;
+  overflow-x: hidden;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 40px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 4px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  background: var(--ink) !important;
+  color: var(--white) !important;
+  padding: 8px 16px;
+  border-radius: 2px;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding: 120px 40px 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.4;
+}
+
+.hero-circle {
+  position: absolute;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-overline {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-overline::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 10vw, 140px);
+  line-height: 0.9;
+  letter-spacing: 4px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.hero-title span { color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: var(--ink-muted);
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.hero-desc {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 2;
+  max-width: 520px;
+  margin-bottom: 48px;
+  letter-spacing: 0.5px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  padding: 16px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: var(--gold); color: var(--ink); }
+
+.btn-secondary {
+  display: inline-block;
+  border: 1px solid var(--rule);
+  color: var(--ink-muted);
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  padding: 16px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+
+.hero-trial {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: var(--green);
+  letter-spacing: 2px;
+  margin-top: 12px;
+}
+
+/* SPINE */
+.spine {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold);
+  z-index: 200;
+}
+
+/* STATS BAR */
+.stats-bar {
+  background: var(--ink);
+  padding: 32px 40px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.stat-item { text-align: center; }
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--white);
+  letter-spacing: 2px;
+  line-height: 1;
+  display: block;
+}
+
+.stat-num.gold { color: var(--gold); }
+
+.stat-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
+}
+
+/* SECTIONS */
+section {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  max-width: 200px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink-muted);
+  font-weight: 300;
+  margin-bottom: 60px;
+}
+
+/* FEATURES GRID */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.feature-card {
+  background: var(--white);
+  padding: 36px 32px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.feature-card:hover { background: var(--off-white); }
+
+.feature-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  color: var(--rule);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.feature-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+
+.feature-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.feature-desc {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-muted);
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+.feature-accent {
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.feature-card:hover .feature-accent { opacity: 1; }
+
+/* SILOS */
+.silos {
+  background: var(--off-white);
+  padding: 100px 40px;
+}
+
+.silos-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.silos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 60px;
+}
+
+.silo-card {
+  border: 1px solid;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.silo-card.surv { border-color: rgba(26,47,92,0.3); }
+.silo-card.lab { border-color: rgba(168,136,42,0.3); }
+
+.silo-header {
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.silo-header.surv { background: rgba(26,47,92,0.04); }
+.silo-header.lab { background: rgba(168,136,42,0.04); }
+
+.silo-accent {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.silo-accent.surv { background: var(--blue); }
+.silo-accent.lab { background: var(--gold); }
+
+.silo-dept {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 4px;
+  margin-bottom: 6px;
+}
+
+.silo-dept.surv { color: var(--blue); }
+.silo-dept.lab { color: var(--gold); }
+
+.silo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: var(--ink);
+}
+
+.silo-body { padding: 24px 28px; }
+
+.silo-item {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-muted);
+  letter-spacing: 1px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.silo-item:last-child { border-bottom: none; }
+.silo-item::before { content: '→'; color: var(--ink-ghost); }
+
+/* PRICING */
+.pricing-section {
+  padding: 100px 40px;
+  background: var(--white);
+}
+
+.pricing-inner { max-width: 1100px; margin: 0 auto; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 60px;
+}
+
+.price-card {
+  background: var(--white);
+  padding: 40px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-card.popular {
+  background: var(--ink);
+}
+
+.price-badge {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  background: rgba(168,136,42,0.15);
+  border: 1px solid rgba(168,136,42,0.3);
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.price-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+
+.price-card:not(.popular) .price-name { color: var(--ink); }
+.price-card.popular .price-name { color: var(--white); }
+
+.price-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.price-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.price-card:not(.popular) .price-num { color: var(--ink); }
+.price-card.popular .price-num { color: var(--gold); }
+
+.price-period {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px;
+}
+
+.price-card:not(.popular) .price-period { color: var(--ink-muted); }
+.price-card.popular .price-period { color: rgba(255,255,255,0.4); }
+
+.price-trial {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: var(--green);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+}
+
+.price-card.popular .price-trial { color: #4ADE80; }
+
+.price-features {
+  flex: 1;
+  margin-bottom: 28px;
+}
+
+.price-feature {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 9px;
+  padding: 8px 0;
+  border-bottom: 1px solid;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.price-card:not(.popular) .price-feature {
+  color: var(--ink-muted);
+  border-color: var(--rule);
+}
+
+.price-card.popular .price-feature {
+  color: rgba(255,255,255,0.6);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.price-feature:last-child { border-bottom: none; }
+
+.price-feature::before { content: '·'; opacity: 0.4; flex-shrink: 0; }
+
+.price-btn {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border-radius: 2px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.price-card:not(.popular) .price-btn {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+
+.price-card:not(.popular) .price-btn:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.price-card.popular .price-btn {
+  background: var(--gold);
+  color: var(--ink);
+  border: 1px solid var(--gold);
+}
+
+.price-card.popular .price-btn:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+/* CTA FINAL */
+.cta-section {
+  background: var(--ink);
+  padding: 100px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.cta-inner { position: relative; z-index: 2; }
+
+.cta-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.cta-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 100px);
+  letter-spacing: 4px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.cta-title span { color: var(--gold); }
+
+.cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  padding: 18px 48px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.cta-btn:hover {
+  background: transparent;
+  color: var(--gold);
+  outline: 1px solid var(--gold);
+}
+
+.cta-note {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 2px;
+  margin-top: 16px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink-mid);
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: gap;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.3);
+}
+
+.footer-logo span { color: var(--gold); }
+
+.footer-text {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 2px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-overline { animation: fadeUp 0.6s ease 0.1s both; }
+.hero-title { animation: fadeUp 0.6s ease 0.2s both; }
+.hero-subtitle { animation: fadeUp 0.6s ease 0.3s both; }
+.hero-desc { animation: fadeUp 0.6s ease 0.4s both; }
+.hero-actions { animation: fadeUp 0.6s ease 0.5s both; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+
+  .hero { padding: 100px 20px 60px; }
+
+  .silos-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+
+  section { padding: 60px 20px; }
+  .stats-bar { gap: 40px; padding: 32px 20px; }
+
+  .cta-section { padding: 60px 20px; }
+  footer { flex-direction: column; gap: 12px; padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="spine"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CIV<span>I</span>MME</a>
+  <ul class="nav-links">
+    <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+    <li><a href="#departements">Départements</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#essai" class="nav-cta">Essai gratuit →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:120px; max-width:100%; margin:0;">
+  <div class="hero-grid"></div>
+  <div class="hero-circle" style="width:600px;height:600px;top:-100px;right:-100px;"></div>
+  <div class="hero-circle" style="width:300px;height:300px;bottom:80px;left:200px;opacity:0.3;"></div>
+
+  <div class="hero-inner">
+    <div class="hero-overline">Intelligence Terrain · Expertise Chantier</div>
+
+    <h1 class="hero-title">
+      L'APP QUI<br>
+      DOCUMENTE<br>
+      <span>LE TERRAIN</span>
+    </h1>
+
+    <p class="hero-subtitle">Rapports automatiques. Signatures certifiées. IA intégrée.</p>
+
+    <p class="hero-desc">
+      Civimme remplace le carnet papier et le tableur Excel sur le chantier.
+      Chaque capture est géolocalisée, analysée par GPT-4o et certifiée
+      par signature numérique eIDAS — en temps réel, même sans réseau.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#essai" class="btn-primary">COMMENCER GRATUITEMENT →</a>
+      <a href="#fonctionnalites" class="btn-secondary">VOIR LES FONCTIONNALITÉS</a>
+    </div>
+    <p class="hero-trial">✓ ESSAI GRATUIT 30 JOURS · SANS CARTE BANCAIRE</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">15</span>
+    <span class="stat-label">Modules terrain</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num gold">4</span>
+    <span class="stat-label">Types d'essais</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">30J</span>
+    <span class="stat-label">Essai gratuit</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num gold">100%</span>
+    <span class="stat-label">Hors-ligne</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="fonctionnalites">
+  <div class="section-label">Fonctionnalités</div>
+  <h2 class="section-title">TOUT CE DONT<br>VOUS AVEZ BESOIN</h2>
+  <p class="section-subtitle">Sur le terrain. Sans réseau. Sans carnet papier.</p>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-accent"></div>
+      <div class="feature-num">01</div>
+      <span class="feature-icon">📸</span>
+      <div class="feature-title">VISION IA GPT-4O</div>
+      <p class="feature-desc">Photographiez béton, asphalte, sol ou armature. GPT-4o analyse, identifie les défauts, génère le rapport automatiquement. Zéro rédaction manuelle.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-accent"></div>
+      <div class="feature-num">02</div>
+      <span class="feature-icon">📍</span>
+      <div class="feature-title">GÉOPHARE UTM</div>
+      <p class="feature-desc">Coordonnées GPS sub-mètre, azimut, zone UTM et chaînage PK sur chaque capture. Lien Google Maps cliquable dans chaque PDF exporté.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-accent"></div>
+      <div class="feature-num">03</div>
+      <span class="feature-icon">🔐</span>
+      <div class="feature-title">SIGNATURES EIDAS</div>
+      <p class="feature-desc">Horodatage RFC 3161 via FreeTSA. Valeur juridique reconnue internationalement. Certificat .tsr téléchargeable. Conforme au règlement UE 910/2014.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-accent"></div>
+      <div class="feature-num">04</div>
+      <span class="feature-icon">⚡</span>
+      <div class="feature-title">MODE HORS-LIGNE</div>
+      <p class="feature-desc">Saisissez sans réseau. Civimme stocke localement et synchronise automatiquement dès le retour de la connexion. Zéro perte de données.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-accent"></div>
+      <div class="feature-num">05</div>
+      <span class="feature-icon">📋</span>
+      <div class="feature-title">MODÈLE RAPPORT</div>
+      <p class="feature-desc">Importez le formulaire de votre compagnie. GPT-4o apprend sa structure. Vos futurs rapports respectent automatiquement votre format officiel.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-accent"></div>
+      <div class="feature-num">06</div>
+      <span class="feature-icon">⚠️</span>
+      <div class="feature-title">PUNCH LIST IA</div>
+      <p class="feature-desc">Non-conformités avec photo, responsable, échéance et suivi statut. GPT-4o analyse la sévérité automatiquement. PDF dédié pour le maître d'œuvre.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SILOS -->
+<div class="silos" id="departements">
+  <div class="silos-inner">
+    <div class="section-label">Départements</div>
+    <h2 class="section-title">DEUX SILOS<br>ÉTANCHES</h2>
+    <p class="section-subtitle">Surveillance et Laboratoire — données légalement séparées.</p>
+
+    <div class="silos-grid">
+
+      <div class="silo-card surv">
+        <div class="silo-header surv">
+          <div class="silo-dept surv">
+            <span class="silo-accent surv"></span>
+            001 · SURVEILLANCE
+          </div>
+          <div class="silo-title">GÉNIE-CONSEIL</div>
+        </div>
+        <div class="silo-body">
+          <div class="silo-item">Rapports journaliers automatiques</div>
+          <div class="silo-item">Décomptes & bordereau OCR</div>
+          <div class="silo-item">Sécurité SSE & constats</div>
+          <div class="silo-item">Main d'œuvre + résumé IA</div>
+          <div class="silo-item">Punch List non-conformités</div>
+          <div class="silo-item">Suivi matériaux livrés</div>
+          <div class="silo-item">Bundle 16h · Plan B Mailto</div>
+        </div>
+      </div>
+
+      <div class="silo-card lab">
+        <div class="silo-header lab">
+          <div class="silo-dept lab">
+            <span class="silo-accent lab"></span>
+            002 · LABORATOIRE
+          </div>
+          <div class="silo-title">CONTRÔLE QUALITÉ</div>
+        </div>
+        <div class="silo-body">
+          <div class="silo-item">Essais terrain adaptatifs (béton, sol, asphalte, granulats)</div>
+          <div class="silo-item">Validation vs normes locales configurables</div>
+          <div class="silo-item">NC auto depuis essai non conforme</div>
+          <div class="silo-item">Analyse échantillon GPT-4o vision</div>
+          <div class="silo-item">Bon de prélèvement numérique</div>
+          <div class="silo-item">Export PDF + email certifié</div>
+          <div class="silo-item">Calcul géométrique aires & volumes</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="font-family:'Azeret Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:24px;text-align:center;letter-spacing:1px;">
+      Compagnie X (Surveillance) et Compagnie Y (Laboratoire) — données séparées légalement. Aucun partage possible.
+    </p>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="tarifs">
+  <div class="pricing-inner">
+    <div class="section-label">Tarifs</div>
+    <h2 class="section-title">SIMPLE.<br>TRANSPARENT.</h2>
+    <p class="section-subtitle">Essai gratuit 30 jours. Annulation à tout moment.</p>
+
+    <div class="pricing-grid">
+
+      <!-- SOLO -->
+      <div class="price-card">
+        <div class="price-name">SOLO</div>
+        <div class="price-amount">
+          <span class="price-num">29</span>
+          <span class="price-period">$ / mois</span>
+        </div>
+        <p class="price-trial">✓ Essai gratuit 30 jours</p>
+        <div class="price-features">
+          <div class="price-feature">1 utilisateur</div>
+          <div class="price-feature">3 projets actifs</div>
+          <div class="price-feature">Tous les modules terrain</div>
+          <div class="price-feature">PDF + Email illimités</div>
+          <div class="price-feature">Géophare + Météo auto</div>
+          <div class="price-feature">Support email</div>
+        </div>
+        <a href="#essai" class="price-btn">COMMENCER →</a>
+      </div>
+
+      <!-- ÉQUIPE -->
+      <div class="price-card popular">
+        <div class="price-badge">★ POPULAIRE</div>
+        <div class="price-name">ÉQUIPE</div>
+        <div class="price-amount">
+          <span class="price-num">99</span>
+          <span class="price-period">$ / mois</span>
+        </div>
+        <p class="price-trial">✓ Essai gratuit 30 jours</p>
+        <div class="price-features">
+          <div class="price-feature">5 utilisateurs</div>
+          <div class="price-feature">Projets illimités</div>
+          <div class="price-feature">Tout Solo inclus</div>
+          <div class="price-feature">Tableau de bord multi-chantiers</div>
+          <div class="price-feature">Filtre par projet</div>
+          <div class="price-feature">Support prioritaire</div>
+        </div>
+        <a href="#essai" class="price-btn">COMMENCER →</a>
+      </div>
+
+      <!-- FIRME -->
+      <div class="price-card">
+        <div class="price-name">FIRME</div>
+        <div class="price-amount">
+          <span class="price-num">299</span>
+          <span class="price-period">$ / mois</span>
+        </div>
+        <p class="price-trial">✓ Essai gratuit 30 jours</p>
+        <div class="price-features">
+          <div class="price-feature">Utilisateurs illimités</div>
+          <div class="price-feature">Tout Équipe inclus</div>
+          <div class="price-feature">Modèle rapport compagnie</div>
+          <div class="price-feature">Marque blanche disponible</div>
+          <div class="price-feature">Onboarding personnalisé</div>
+          <div class="price-feature">Support dédié</div>
+        </div>
+        <a href="mailto:contact@civimme.com" class="price-btn">NOUS CONTACTER →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-section" id="essai">
+  <div class="cta-grid"></div>
+  <div class="cta-inner">
+    <p class="cta-label">Prêt à commencer</p>
+    <h2 class="cta-title">30 JOURS<br><span>GRATUITS</span></h2>
+    <p class="cta-sub">Sans carte bancaire. Sans engagement.</p>
+    <a href="https://construction-vision.preview.emergentagent.com" class="cta-btn">
+      CRÉER MON COMPTE →
+    </a>
+    <p class="cta-note">FONCTIONNE SUR iOS · ANDROID · WEB · HORS-LIGNE</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CIV<span>I</span>MME</div>
+  <div class="footer-text">© 2026 CIVIMME · INTELLIGENCE TERRAIN · TOUS DROITS RÉSERVÉS</div>
+  <div class="footer-text">contact@civimme.com</div>
+</footer>
+
+</body>
+</html>
