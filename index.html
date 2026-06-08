@@ -27,9 +27,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--white);
   color: var(--ink);
@@ -443,6 +441,41 @@ section {
 .silo-item:last-child { border-bottom: none; }
 .silo-item::before { content: '→'; color: var(--ink-ghost); }
 
+/* DOWNLOAD BANNER */
+.download-banner {
+  background: var(--gold-light);
+  border: 1px solid rgba(168,136,42,0.3);
+  padding: 24px 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.download-banner-text {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+}
+
+.btn-download {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  padding: 12px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-download:hover { background: var(--gold); color: var(--ink); }
+
 /* PRICING */
 .pricing-section {
   padding: 100px 40px;
@@ -468,9 +501,7 @@ section {
   flex-direction: column;
 }
 
-.price-card.popular {
-  background: var(--ink);
-}
+.price-card.popular { background: var(--ink); }
 
 .price-badge {
   font-family: 'Azeret Mono', monospace;
@@ -530,10 +561,7 @@ section {
 
 .price-card.popular .price-trial { color: #4ADE80; }
 
-.price-features {
-  flex: 1;
-  margin-bottom: 28px;
-}
+.price-features { flex: 1; margin-bottom: 28px; }
 
 .price-feature {
   font-family: 'Azeret Mono', monospace;
@@ -556,7 +584,6 @@ section {
 }
 
 .price-feature:last-child { border-bottom: none; }
-
 .price-feature::before { content: '·'; opacity: 0.4; flex-shrink: 0; }
 
 .price-btn {
@@ -675,7 +702,8 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: gap;
+  flex-wrap: wrap;
+  gap: 12px;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -711,17 +739,14 @@ footer {
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-
   .hero { padding: 100px 20px 60px; }
-
   .silos-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
-
   section { padding: 60px 20px; }
   .stats-bar { gap: 40px; padding: 32px 20px; }
-
   .cta-section { padding: 60px 20px; }
   footer { flex-direction: column; gap: 12px; padding: 24px 20px; }
+  .download-banner { flex-direction: column; padding: 20px; }
 }
 </style>
 </head>
@@ -759,7 +784,7 @@ footer {
 
     <p class="hero-desc">
       Civimme remplace le carnet papier et le tableur Excel sur le chantier.
-      Chaque capture est géolocalisée, analysée par GPT-4o et certifiée
+      Chaque capture est géolocalisée, analysée par notre IA et certifiée
       par signature numérique eIDAS — en temps réel, même sans réseau.
     </p>
 
@@ -791,6 +816,14 @@ footer {
   </div>
 </div>
 
+<!-- DOWNLOAD BANNER -->
+<div class="download-banner">
+  <span class="download-banner-text">📱 DISPONIBLE SUR ANDROID · iOS BIENTÔT</span>
+  <a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="btn-download">
+    TÉLÉCHARGER L'APK →
+  </a>
+</div>
+
 <!-- FEATURES -->
 <section id="fonctionnalites">
   <div class="section-label">Fonctionnalités</div>
@@ -803,8 +836,8 @@ footer {
       <div class="feature-accent"></div>
       <div class="feature-num">01</div>
       <span class="feature-icon">📸</span>
-      <div class="feature-title">VISION IA GPT-4O</div>
-      <p class="feature-desc">Photographiez béton, asphalte, sol ou armature. GPT-4o analyse, identifie les défauts, génère le rapport automatiquement. Zéro rédaction manuelle.</p>
+      <div class="feature-title">VISION IA CIVIMME</div>
+      <p class="feature-desc">Photographiez béton, asphalte, sol ou armature. Notre IA analyse, identifie les défauts, génère le rapport automatiquement. Zéro rédaction manuelle.</p>
     </div>
 
     <div class="feature-card">
@@ -836,7 +869,7 @@ footer {
       <div class="feature-num">05</div>
       <span class="feature-icon">📋</span>
       <div class="feature-title">MODÈLE RAPPORT</div>
-      <p class="feature-desc">Importez le formulaire de votre compagnie. GPT-4o apprend sa structure. Vos futurs rapports respectent automatiquement votre format officiel.</p>
+      <p class="feature-desc">Importez le formulaire de votre compagnie. Notre IA apprend sa structure. Vos futurs rapports respectent automatiquement votre format officiel.</p>
     </div>
 
     <div class="feature-card">
@@ -844,7 +877,7 @@ footer {
       <div class="feature-num">06</div>
       <span class="feature-icon">⚠️</span>
       <div class="feature-title">PUNCH LIST IA</div>
-      <p class="feature-desc">Non-conformités avec photo, responsable, échéance et suivi statut. GPT-4o analyse la sévérité automatiquement. PDF dédié pour le maître d'œuvre.</p>
+      <p class="feature-desc">Non-conformités avec photo, responsable, échéance et suivi statut. Notre IA analyse la sévérité automatiquement. PDF dédié pour le maître d'œuvre.</p>
     </div>
 
   </div>
@@ -890,7 +923,7 @@ footer {
           <div class="silo-item">Essais terrain adaptatifs (béton, sol, asphalte, granulats)</div>
           <div class="silo-item">Validation vs normes locales configurables</div>
           <div class="silo-item">NC auto depuis essai non conforme</div>
-          <div class="silo-item">Analyse échantillon GPT-4o vision</div>
+          <div class="silo-item">Analyse échantillon IA Vision</div>
           <div class="silo-item">Bon de prélèvement numérique</div>
           <div class="silo-item">Export PDF + email certifié</div>
           <div class="silo-item">Calcul géométrique aires & volumes</div>
@@ -914,7 +947,6 @@ footer {
 
     <div class="pricing-grid">
 
-      <!-- SOLO -->
       <div class="price-card">
         <div class="price-name">SOLO</div>
         <div class="price-amount">
@@ -933,7 +965,6 @@ footer {
         <a href="#essai" class="price-btn">COMMENCER →</a>
       </div>
 
-      <!-- ÉQUIPE -->
       <div class="price-card popular">
         <div class="price-badge">★ POPULAIRE</div>
         <div class="price-name">ÉQUIPE</div>
@@ -953,7 +984,6 @@ footer {
         <a href="#essai" class="price-btn">COMMENCER →</a>
       </div>
 
-      <!-- FIRME -->
       <div class="price-card">
         <div class="price-name">FIRME</div>
         <div class="price-amount">
@@ -983,7 +1013,7 @@ footer {
     <p class="cta-label">Prêt à commencer</p>
     <h2 class="cta-title">30 JOURS<br><span>GRATUITS</span></h2>
     <p class="cta-sub">Sans carte bancaire. Sans engagement.</p>
-    <a href="https://construction-vision.preview.emergentagent.com" class="cta-btn">
+    <a href="https://civimme-api.onrender.com" class="cta-btn">
       CRÉER MON COMPTE →
     </a>
     <p class="cta-note">FONCTIONNE SUR iOS · ANDROID · WEB · HORS-LIGNE</p>
