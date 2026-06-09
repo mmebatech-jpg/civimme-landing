@@ -13,6 +13,7 @@
   --rule: #E0DDD8;
   --white: #FFFFFF;
   --off-white: #F7F5F2;
+  --red: #8B1A1A;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -94,6 +95,23 @@ li {
   line-height: 2;
   color: var(--ink-muted);
 }
+.delete-box {
+  background: rgba(139,26,26,0.04);
+  border: 1px solid rgba(139,26,26,0.3);
+  border-left: 3px solid var(--red);
+  padding: 24px;
+  margin: 24px 0;
+  border-radius: 2px;
+}
+.delete-box h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.delete-box p { margin: 0 0 8px 0; }
+.delete-box ul { margin: 8px 0 0 0; }
 .contact-box {
   background: var(--off-white);
   border: 1px solid var(--rule);
@@ -173,7 +191,21 @@ footer {
   <li>Les certificats eIDAS sont conservés 10 ans conformément aux exigences légales</li>
 </ul>
 
-<h2>9. VOS DROITS</h2>
+<h2 id="suppression">9. SUPPRIMER MON COMPTE</h2>
+
+<div class="delete-box">
+  <h3>🗑 DEMANDE DE SUPPRESSION DE COMPTE</h3>
+  <p>Pour demander la suppression de votre compte et de toutes vos données associées :</p>
+  <ul>
+    <li>Envoyez un email à <strong>contact@civimme.com</strong> avec l'objet : <em>"Suppression de compte"</em></li>
+    <li>Indiquez l'adresse email associée à votre compte Civimme</li>
+    <li>Votre compte sera supprimé dans les <strong>30 jours</strong> suivant la demande</li>
+  </ul>
+  <p style="margin-top:12px;">Données supprimées : profil, rapports, photos, résultats d'essais, coordonnées GPS.</p>
+  <p>Données conservées : certificats eIDAS (10 ans — obligation légale), données de facturation (7 ans — obligation fiscale).</p>
+</div>
+
+<h2>10. VOS DROITS</h2>
 <p>Conformément aux lois applicables (RGPD en Europe, LPRPDE au Canada, etc.), vous avez le droit de :</p>
 <ul>
   <li>Accéder à vos données personnelles</li>
@@ -183,7 +215,7 @@ footer {
   <li>Vous opposer au traitement de vos données</li>
 </ul>
 
-<h2>10. PARTAGE AVEC DES TIERS</h2>
+<h2>11. PARTAGE AVEC DES TIERS</h2>
 <p>Nous faisons appel à des prestataires techniques de confiance :</p>
 <ul>
   <li>MongoDB Atlas — stockage des données (AWS Oregon)</li>
@@ -194,10 +226,10 @@ footer {
 </ul>
 <p>Ces prestataires sont contractuellement tenus de protéger vos données et ne peuvent les utiliser à d'autres fins.</p>
 
-<h2>11. ENFANTS</h2>
+<h2>12. ENFANTS</h2>
 <p>Civimme est une application professionnelle destinée aux adultes travaillant dans le secteur de la construction. Elle n'est pas destinée aux personnes de moins de 18 ans.</p>
 
-<h2>12. MODIFICATIONS</h2>
+<h2>13. MODIFICATIONS</h2>
 <p>Nous pouvons mettre à jour cette politique de confidentialité. Vous serez notifié par email en cas de changements importants. La date de dernière mise à jour est indiquée en haut de cette page.</p>
 
 <div class="contact-box">
