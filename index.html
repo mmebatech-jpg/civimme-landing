@@ -35,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* NAVIGATION */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -86,7 +85,6 @@ nav {
   border-radius: 2px;
 }
 
-/* HERO */
 .hero {
   min-height: 100vh;
   padding: 120px 40px 80px;
@@ -217,7 +215,6 @@ nav {
   margin-top: 12px;
 }
 
-/* SPINE */
 .spine {
   position: fixed;
   left: 0; top: 0; bottom: 0;
@@ -226,7 +223,6 @@ nav {
   z-index: 200;
 }
 
-/* STATS BAR */
 .stats-bar {
   background: var(--ink);
   padding: 32px 40px;
@@ -259,7 +255,6 @@ nav {
   display: block;
 }
 
-/* SECTIONS */
 section {
   padding: 100px 40px;
   max-width: 1100px;
@@ -304,7 +299,6 @@ section {
   margin-bottom: 60px;
 }
 
-/* FEATURES GRID */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -360,16 +354,12 @@ section {
 
 .feature-card:hover .feature-accent { opacity: 1; }
 
-/* SILOS */
 .silos {
   background: var(--off-white);
   padding: 100px 40px;
 }
 
-.silos-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+.silos-inner { max-width: 1100px; margin: 0 auto; }
 
 .silos-grid {
   display: grid;
@@ -378,26 +368,16 @@ section {
   margin-top: 60px;
 }
 
-.silo-card {
-  border: 1px solid;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
+.silo-card { border: 1px solid; border-radius: 3px; overflow: hidden; }
 .silo-card.surv { border-color: rgba(26,47,92,0.3); }
 .silo-card.lab { border-color: rgba(168,136,42,0.3); }
 
-.silo-header {
-  padding: 24px 28px;
-  border-bottom: 1px solid var(--rule);
-}
-
+.silo-header { padding: 24px 28px; border-bottom: 1px solid var(--rule); }
 .silo-header.surv { background: rgba(26,47,92,0.04); }
 .silo-header.lab { background: rgba(168,136,42,0.04); }
 
 .silo-accent {
-  width: 4px;
-  height: 4px;
+  width: 4px; height: 4px;
   border-radius: 50%;
   display: inline-block;
   margin-right: 8px;
@@ -441,7 +421,6 @@ section {
 .silo-item:last-child { border-bottom: none; }
 .silo-item::before { content: '→'; color: var(--ink-ghost); }
 
-/* DOWNLOAD BANNER */
 .download-banner {
   background: var(--gold-light);
   border: 1px solid rgba(168,136,42,0.3);
@@ -476,12 +455,7 @@ section {
 
 .btn-download:hover { background: var(--gold); color: var(--ink); }
 
-/* PRICING */
-.pricing-section {
-  padding: 100px 40px;
-  background: var(--white);
-}
-
+.pricing-section { padding: 100px 40px; background: var(--white); }
 .pricing-inner { max-width: 1100px; margin: 0 auto; }
 
 .pricing-grid {
@@ -526,12 +500,7 @@ section {
 .price-card:not(.popular) .price-name { color: var(--ink); }
 .price-card.popular .price-name { color: var(--white); }
 
-.price-amount {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 4px;
-}
+.price-amount { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
 
 .price-num {
   font-family: 'Bebas Neue', sans-serif;
@@ -543,11 +512,7 @@ section {
 .price-card:not(.popular) .price-num { color: var(--ink); }
 .price-card.popular .price-num { color: var(--gold); }
 
-.price-period {
-  font-family: 'Azeret Mono', monospace;
-  font-size: 10px;
-}
-
+.price-period { font-family: 'Azeret Mono', monospace; font-size: 10px; }
 .price-card:not(.popular) .price-period { color: var(--ink-muted); }
 .price-card.popular .price-period { color: rgba(255,255,255,0.4); }
 
@@ -560,7 +525,6 @@ section {
 }
 
 .price-card.popular .price-trial { color: #4ADE80; }
-
 .price-features { flex: 1; margin-bottom: 28px; }
 
 .price-feature {
@@ -573,16 +537,8 @@ section {
   align-items: flex-start;
 }
 
-.price-card:not(.popular) .price-feature {
-  color: var(--ink-muted);
-  border-color: var(--rule);
-}
-
-.price-card.popular .price-feature {
-  color: rgba(255,255,255,0.6);
-  border-color: rgba(255,255,255,0.08);
-}
-
+.price-card:not(.popular) .price-feature { color: var(--ink-muted); border-color: var(--rule); }
+.price-card.popular .price-feature { color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.08); }
 .price-feature:last-child { border-bottom: none; }
 .price-feature::before { content: '·'; opacity: 0.4; flex-shrink: 0; }
 
@@ -598,29 +554,11 @@ section {
   transition: all 0.2s;
 }
 
-.price-card:not(.popular) .price-btn {
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  background: transparent;
-}
+.price-card:not(.popular) .price-btn { border: 1px solid var(--ink); color: var(--ink); background: transparent; }
+.price-card:not(.popular) .price-btn:hover { background: var(--ink); color: var(--white); }
+.price-card.popular .price-btn { background: var(--gold); color: var(--ink); border: 1px solid var(--gold); }
+.price-card.popular .price-btn:hover { background: transparent; color: var(--gold); }
 
-.price-card:not(.popular) .price-btn:hover {
-  background: var(--ink);
-  color: var(--white);
-}
-
-.price-card.popular .price-btn {
-  background: var(--gold);
-  color: var(--ink);
-  border: 1px solid var(--gold);
-}
-
-.price-card.popular .price-btn:hover {
-  background: transparent;
-  color: var(--gold);
-}
-
-/* CTA FINAL */
 .cta-section {
   background: var(--ink);
   padding: 100px 40px;
@@ -681,11 +619,7 @@ section {
   transition: all 0.2s;
 }
 
-.cta-btn:hover {
-  background: transparent;
-  color: var(--gold);
-  outline: 1px solid var(--gold);
-}
+.cta-btn:hover { background: transparent; color: var(--gold); outline: 1px solid var(--gold); }
 
 .cta-note {
   font-family: 'Azeret Mono', monospace;
@@ -695,7 +629,6 @@ section {
   margin-top: 16px;
 }
 
-/* FOOTER */
 footer {
   background: var(--ink-mid);
   padding: 40px;
@@ -707,23 +640,10 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-.footer-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  letter-spacing: 4px;
-  color: rgba(255,255,255,0.3);
-}
-
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 4px; color: rgba(255,255,255,0.3); }
 .footer-logo span { color: var(--gold); }
+.footer-text { font-family: 'Azeret Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.2); letter-spacing: 2px; }
 
-.footer-text {
-  font-family: 'Azeret Mono', monospace;
-  font-size: 8px;
-  color: rgba(255,255,255,0.2);
-  letter-spacing: 2px;
-}
-
-/* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
@@ -735,7 +655,6 @@ footer {
 .hero-desc { animation: fadeUp 0.6s ease 0.4s both; }
 .hero-actions { animation: fadeUp 0.6s ease 0.5s both; }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
@@ -761,7 +680,7 @@ footer {
     <li><a href="#fonctionnalites">Fonctionnalités</a></li>
     <li><a href="#departements">Départements</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
-    <li><a href="#essai" class="nav-cta">Essai gratuit →</a></li>
+    <li><a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="nav-cta">TÉLÉCHARGER →</a></li>
   </ul>
 </nav>
 
@@ -789,7 +708,7 @@ footer {
     </p>
 
     <div class="hero-actions">
-      <a href="#essai" class="btn-primary">COMMENCER GRATUITEMENT →</a>
+      <a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="btn-primary">TÉLÉCHARGER GRATUITEMENT →</a>
       <a href="#fonctionnalites" class="btn-secondary">VOIR LES FONCTIONNALITÉS</a>
     </div>
     <p class="hero-trial">✓ ESSAI GRATUIT 30 JOURS · SANS CARTE BANCAIRE</p>
@@ -798,22 +717,10 @@ footer {
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-num">15</span>
-    <span class="stat-label">Modules terrain</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num gold">4</span>
-    <span class="stat-label">Types d'essais</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">30J</span>
-    <span class="stat-label">Essai gratuit</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num gold">100%</span>
-    <span class="stat-label">Hors-ligne</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">15</span><span class="stat-label">Modules terrain</span></div>
+  <div class="stat-item"><span class="stat-num gold">4</span><span class="stat-label">Types d'essais</span></div>
+  <div class="stat-item"><span class="stat-num">30J</span><span class="stat-label">Essai gratuit</span></div>
+  <div class="stat-item"><span class="stat-num gold">100%</span><span class="stat-label">Hors-ligne</span></div>
 </div>
 
 <!-- DOWNLOAD BANNER -->
@@ -831,7 +738,6 @@ footer {
   <p class="section-subtitle">Sur le terrain. Sans réseau. Sans carnet papier.</p>
 
   <div class="features-grid">
-
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">01</div>
@@ -839,7 +745,6 @@ footer {
       <div class="feature-title">VISION IA CIVIMME</div>
       <p class="feature-desc">Photographiez béton, asphalte, sol ou armature. Notre IA analyse, identifie les défauts, génère le rapport automatiquement. Zéro rédaction manuelle.</p>
     </div>
-
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">02</div>
@@ -847,7 +752,6 @@ footer {
       <div class="feature-title">GÉOPHARE UTM</div>
       <p class="feature-desc">Coordonnées GPS sub-mètre, azimut, zone UTM et chaînage PK sur chaque capture. Lien Google Maps cliquable dans chaque PDF exporté.</p>
     </div>
-
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">03</div>
@@ -855,7 +759,6 @@ footer {
       <div class="feature-title">SIGNATURES EIDAS</div>
       <p class="feature-desc">Horodatage RFC 3161 via FreeTSA. Valeur juridique reconnue internationalement. Certificat .tsr téléchargeable. Conforme au règlement UE 910/2014.</p>
     </div>
-
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">04</div>
@@ -863,7 +766,6 @@ footer {
       <div class="feature-title">MODE HORS-LIGNE</div>
       <p class="feature-desc">Saisissez sans réseau. Civimme stocke localement et synchronise automatiquement dès le retour de la connexion. Zéro perte de données.</p>
     </div>
-
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">05</div>
@@ -871,7 +773,6 @@ footer {
       <div class="feature-title">MODÈLE RAPPORT</div>
       <p class="feature-desc">Importez le formulaire de votre compagnie. Notre IA apprend sa structure. Vos futurs rapports respectent automatiquement votre format officiel.</p>
     </div>
-
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">06</div>
@@ -879,7 +780,6 @@ footer {
       <div class="feature-title">PUNCH LIST IA</div>
       <p class="feature-desc">Non-conformités avec photo, responsable, échéance et suivi statut. Notre IA analyse la sévérité automatiquement. PDF dédié pour le maître d'œuvre.</p>
     </div>
-
   </div>
 </section>
 
@@ -889,15 +789,10 @@ footer {
     <div class="section-label">Départements</div>
     <h2 class="section-title">DEUX SILOS<br>ÉTANCHES</h2>
     <p class="section-subtitle">Surveillance et Laboratoire — données légalement séparées.</p>
-
     <div class="silos-grid">
-
       <div class="silo-card surv">
         <div class="silo-header surv">
-          <div class="silo-dept surv">
-            <span class="silo-accent surv"></span>
-            001 · SURVEILLANCE
-          </div>
+          <div class="silo-dept surv"><span class="silo-accent surv"></span>001 · SURVEILLANCE</div>
           <div class="silo-title">GÉNIE-CONSEIL</div>
         </div>
         <div class="silo-body">
@@ -910,13 +805,9 @@ footer {
           <div class="silo-item">Bundle 16h · Plan B Mailto</div>
         </div>
       </div>
-
       <div class="silo-card lab">
         <div class="silo-header lab">
-          <div class="silo-dept lab">
-            <span class="silo-accent lab"></span>
-            002 · LABORATOIRE
-          </div>
+          <div class="silo-dept lab"><span class="silo-accent lab"></span>002 · LABORATOIRE</div>
           <div class="silo-title">CONTRÔLE QUALITÉ</div>
         </div>
         <div class="silo-body">
@@ -929,9 +820,7 @@ footer {
           <div class="silo-item">Calcul géométrique aires & volumes</div>
         </div>
       </div>
-
     </div>
-
     <p style="font-family:'Azeret Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:24px;text-align:center;letter-spacing:1px;">
       Compagnie X (Surveillance) et Compagnie Y (Laboratoire) — données séparées légalement. Aucun partage possible.
     </p>
@@ -944,15 +833,10 @@ footer {
     <div class="section-label">Tarifs</div>
     <h2 class="section-title">SIMPLE.<br>TRANSPARENT.</h2>
     <p class="section-subtitle">Essai gratuit 30 jours. Annulation à tout moment.</p>
-
     <div class="pricing-grid">
-
       <div class="price-card">
         <div class="price-name">SOLO</div>
-        <div class="price-amount">
-          <span class="price-num">29</span>
-          <span class="price-period">$ / mois</span>
-        </div>
+        <div class="price-amount"><span class="price-num">29</span><span class="price-period">$ / mois</span></div>
         <p class="price-trial">✓ Essai gratuit 30 jours</p>
         <div class="price-features">
           <div class="price-feature">1 utilisateur</div>
@@ -962,16 +846,12 @@ footer {
           <div class="price-feature">Géophare + Météo auto</div>
           <div class="price-feature">Support email</div>
         </div>
-        <a href="#essai" class="price-btn">COMMENCER →</a>
+        <a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="price-btn">TÉLÉCHARGER →</a>
       </div>
-
       <div class="price-card popular">
         <div class="price-badge">★ POPULAIRE</div>
         <div class="price-name">ÉQUIPE</div>
-        <div class="price-amount">
-          <span class="price-num">99</span>
-          <span class="price-period">$ / mois</span>
-        </div>
+        <div class="price-amount"><span class="price-num">99</span><span class="price-period">$ / mois</span></div>
         <p class="price-trial">✓ Essai gratuit 30 jours</p>
         <div class="price-features">
           <div class="price-feature">5 utilisateurs</div>
@@ -981,15 +861,11 @@ footer {
           <div class="price-feature">Filtre par projet</div>
           <div class="price-feature">Support prioritaire</div>
         </div>
-        <a href="#essai" class="price-btn">COMMENCER →</a>
+        <a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="price-btn">TÉLÉCHARGER →</a>
       </div>
-
       <div class="price-card">
         <div class="price-name">FIRME</div>
-        <div class="price-amount">
-          <span class="price-num">299</span>
-          <span class="price-period">$ / mois</span>
-        </div>
+        <div class="price-amount"><span class="price-num">299</span><span class="price-period">$ / mois</span></div>
         <p class="price-trial">✓ Essai gratuit 30 jours</p>
         <div class="price-features">
           <div class="price-feature">Utilisateurs illimités</div>
@@ -1001,7 +877,6 @@ footer {
         </div>
         <a href="mailto:contact@civimme.com" class="price-btn">NOUS CONTACTER →</a>
       </div>
-
     </div>
   </div>
 </div>
@@ -1013,8 +888,8 @@ footer {
     <p class="cta-label">Prêt à commencer</p>
     <h2 class="cta-title">30 JOURS<br><span>GRATUITS</span></h2>
     <p class="cta-sub">Sans carte bancaire. Sans engagement.</p>
-    <a href="https://civimme-api.onrender.com" class="cta-btn">
-      CRÉER MON COMPTE →
+    <a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="cta-btn">
+      TÉLÉCHARGER L'APP →
     </a>
     <p class="cta-note">FONCTIONNE SUR iOS · ANDROID · WEB · HORS-LIGNE</p>
   </div>
