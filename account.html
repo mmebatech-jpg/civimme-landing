@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civimme — Mon compte</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Azeret+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#0A0A0A; --ink-muted:#6E6E6E; --white:#FFFFFF; --rule:#E0DDD8; --gold:#A8882A; --green:#1A5C32; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'Azeret Mono', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.spine { position: fixed; left:0; top:0; bottom:0; width:4px; background: var(--gold); }
+.card { position: relative; z-index:2; text-align:center; max-width: 520px; }
+.logo { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:6px; margin-bottom:48px; color: rgba(255,255,255,0.5); }
+.logo span { color: var(--gold); }
+.check {
+  width:56px; height:56px; margin:0 auto 28px;
+  border:1px solid var(--gold); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; color: var(--gold);
+}
+h1 { font-family:'Bebas Neue',sans-serif; font-size: clamp(36px,7vw,56px); letter-spacing:3px; line-height:1.05; margin-bottom:14px; }
+h1 span { color: var(--gold); }
+.sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; color:rgba(255,255,255,0.45); font-weight:300; margin-bottom:40px; }
+.steps { text-align:left; margin:0 auto 40px; max-width:380px; }
+.step {
+  font-size:10px; letter-spacing:1px; color:rgba(255,255,255,0.55);
+  padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.08);
+  display:flex; gap:12px; align-items:baseline; line-height:1.7;
+}
+.step:last-child { border-bottom:none; }
+.step b { color: var(--gold); font-weight:400; flex-shrink:0; }
+.btn {
+  display:inline-block; background:var(--gold); color:var(--ink);
+  font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:3px;
+  padding:16px 40px; border-radius:2px; text-decoration:none; transition:all .2s;
+}
+.btn:hover { background:transparent; color:var(--gold); outline:1px solid var(--gold); }
+.note { font-size:8px; letter-spacing:2px; color:rgba(255,255,255,0.25); margin-top:18px; }
+.foot { position:fixed; bottom:20px; left:0; right:0; text-align:center; font-size:8px; letter-spacing:2px; color:rgba(255,255,255,0.18); }
+</style>
+</head>
+<body>
+<div class="spine"></div>
+<div class="bg-grid"></div>
+
+<div class="card">
+  <div class="logo">CIV<span>I</span>MME</div>
+  <div class="check">✓</div>
+  <h1>ABONNEMENT<br><span>À JOUR</span></h1>
+  <p class="sub">Votre paiement est géré en toute sécurité par Stripe.</p>
+
+  <div class="steps">
+    <div class="step"><b>01</b> Fermez cette fenêtre de navigateur</div>
+    <div class="step"><b>02</b> Retournez dans l'application Civimme</div>
+    <div class="step"><b>03</b> Votre statut est mis à jour automatiquement dans Compte → Abonnement</div>
+  </div>
+
+  <a class="btn" href="https://civimme.com">RETOUR AU SITE →</a>
+  <p class="note">UNE QUESTION ? CONTACT@CIVIMME.COM</p>
+</div>
+
+<div class="foot">© 2026 CIVIMME · INTELLIGENCE TERRAIN</div>
+</body>
+</html>
