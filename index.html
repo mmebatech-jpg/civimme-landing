@@ -644,6 +644,77 @@ footer {
 .footer-logo span { color: var(--gold); }
 .footer-text { font-family: 'Azeret Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.2); letter-spacing: 2px; }
 
+/* ===== CONTACT ===== */
+.contact-section { background: var(--off-white); padding: 100px 40px; }
+.contact-inner { max-width: 720px; margin: 0 auto; }
+
+.contact-email-card {
+  display: block;
+  text-decoration: none;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--gold);
+  border-radius: 3px;
+  padding: 18px 24px;
+  margin-bottom: 48px;
+  transition: background 0.2s;
+}
+.contact-email-card:hover { background: var(--off-white); }
+.contact-email-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px; letter-spacing: 4px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.contact-email-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 2px; color: var(--ink);
+}
+
+.contact-form-label {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 8px; letter-spacing: 6px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.contact-form-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--rule); max-width: 200px;
+}
+
+.contact-field {
+  display: block; width: 100%; box-sizing: border-box;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 12px; color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: 14px 16px; margin-bottom: 12px;
+  letter-spacing: 0.5px; transition: border-color 0.2s;
+}
+.contact-field:focus { outline: none; border-color: var(--gold); }
+.contact-field::placeholder { color: var(--ink-ghost); }
+textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azeret Mono', monospace; }
+
+.contact-honeypot { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.contact-feedback {
+  display: none;
+  font-family: 'Azeret Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; line-height: 1.6;
+  padding: 14px 16px; border-radius: 2px; margin: 4px 0 12px;
+}
+.contact-feedback.ok  { display: block; background: rgba(26,92,50,0.08);  color: var(--green); border: 1px solid rgba(26,92,50,0.2); }
+.contact-feedback.err { display: block; background: rgba(139,26,26,0.06); color: var(--red);   border: 1px solid rgba(139,26,26,0.2); }
+
+.contact-submit {
+  width: 100%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px; letter-spacing: 3px;
+  background: var(--ink); color: var(--white);
+  border: 1px solid var(--ink); border-radius: 2px;
+  padding: 18px; cursor: pointer; transition: all 0.2s;
+}
+.contact-submit:hover:not(:disabled) { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.contact-submit:disabled { opacity: 0.5; cursor: default; }
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
@@ -664,6 +735,7 @@ footer {
   section { padding: 60px 20px; }
   .stats-bar { gap: 40px; padding: 32px 20px; }
   .cta-section { padding: 60px 20px; }
+  .contact-section { padding: 60px 20px; }
   footer { flex-direction: column; gap: 12px; padding: 24px 20px; }
   .download-banner { flex-direction: column; padding: 20px; }
 }
@@ -680,6 +752,7 @@ footer {
     <li><a href="#fonctionnalites">Fonctionnalités</a></li>
     <li><a href="#departements">Départements</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#contact">Contact</a></li>
     <li><a href="https://expo.dev/accounts/cutpesa/projects/civimme/builds" class="nav-cta">TÉLÉCHARGER →</a></li>
   </ul>
 </nav>
@@ -895,12 +968,74 @@ footer {
   </div>
 </div>
 
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">NOUS<br>CONTACTER</h2>
+    <p class="section-subtitle">Une question, un projet ? Nous répondons sous 48 h ouvrées.</p>
+
+    <a href="mailto:contact@civimme.com" class="contact-email-card">
+      <div class="contact-email-label">Email</div>
+      <div class="contact-email-value">contact@civimme.com</div>
+    </a>
+
+    <div class="contact-form-label">Formulaire</div>
+    <form id="civimme-contact-form" novalidate>
+      <input type="text" name="name" class="contact-field" placeholder="VOTRE NOM" required>
+      <input type="email" name="email" class="contact-field" placeholder="VOTRE EMAIL" required>
+      <input type="text" name="subject" class="contact-field" placeholder="SUJET">
+      <textarea name="message" class="contact-field" placeholder="VOTRE MESSAGE" rows="6" required></textarea>
+      <input type="text" name="website" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div id="civimme-contact-feedback" class="contact-feedback"></div>
+      <button type="submit" id="civimme-contact-submit" class="contact-submit">ENVOYER LE MESSAGE</button>
+    </form>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">CIV<span>I</span>MME</div>
   <div class="footer-text">© 2026 CIVIMME · INTELLIGENCE TERRAIN · TOUS DROITS RÉSERVÉS</div>
-  <div class="footer-text">contact@civimme.com</div>
+  <div class="footer-text"><a href="mailto:contact@civimme.com" style="color:inherit;text-decoration:none;">contact@civimme.com</a></div>
 </footer>
+
+<script>
+(function(){
+  var form = document.getElementById('civimme-contact-form');
+  var fb   = document.getElementById('civimme-contact-feedback');
+  var btn  = document.getElementById('civimme-contact-submit');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    fb.className = 'contact-feedback';
+    btn.disabled = true; btn.textContent = 'ENVOI EN COURS…';
+    var d = new FormData(form);
+    fetch('https://api.civimme.com/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: d.get('name') || '',
+        email: d.get('email') || '',
+        subject: d.get('subject') || '',
+        message: d.get('message') || '',
+        website: d.get('website') || ''
+      })
+    })
+    .then(function(r){ return r.ok ? r.json() : r.json().then(function(j){ throw new Error(j.detail || 'err'); }); })
+    .then(function(){
+      fb.className = 'contact-feedback ok';
+      fb.textContent = 'Message envoyé. Merci, nous revenons vers vous rapidement.';
+      form.reset();
+    })
+    .catch(function(){
+      fb.className = 'contact-feedback err';
+      fb.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
+    })
+    .then(function(){ btn.disabled = false; btn.textContent = 'ENVOYER LE MESSAGE'; });
+  });
+})();
+</script>
 
 </body>
 </html>
