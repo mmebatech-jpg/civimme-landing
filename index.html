@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Civimme — Intelligence Terrain</title>
-<meta name="description" content="L'application mobile qui remplace le carnet papier sur le chantier. IA, géolocalisation, signatures certifiées. Essai gratuit 30 jours.">
+<meta name="description" content="L'application mobile qui remplace le carnet papier sur le chantier. IA, géolocalisation, rapports signés et scellés. Pour les firmes de génie-conseil, laboratoires et municipalités.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -504,7 +504,7 @@ section {
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
@@ -890,12 +890,12 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
       <span>LE TERRAIN</span>
     </h1>
 
-    <p class="hero-subtitle">Rapports automatiques. Signatures certifiées. IA intégrée.</p>
+    <p class="hero-subtitle">Rapports automatiques. Signés et scellés. IA intégrée.</p>
 
     <p class="hero-desc">
       Civimme remplace le carnet papier et le tableur Excel sur le chantier.
-      Chaque capture est géolocalisée, analysée par notre IA et certifiée
-      par signature numérique eIDAS — en temps réel, même sans réseau.
+      Chaque capture est géolocalisée, analysée par notre IA, signée et scellée
+      par un horodatage RFC 3161. La saisie fonctionne même sans réseau.
     </p>
 
     <div class="hero-actions">
@@ -904,7 +904,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
     </div>
     <p class="hero-trial">
       <svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      ESSAI GRATUIT 30 JOURS · SANS CARTE BANCAIRE
+      ESSAI GRATUIT 30 JOURS POUR VOTRE ENTREPRISE · SANS CARTE BANCAIRE
     </p>
   </div>
 </section>
@@ -914,7 +914,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
   <div class="stat-item"><span class="stat-num">15</span><span class="stat-label">Modules terrain</span></div>
   <div class="stat-item"><span class="stat-num gold">4</span><span class="stat-label">Langues · FR EN AR SW</span></div>
   <div class="stat-item"><span class="stat-num">30J</span><span class="stat-label">Essai gratuit</span></div>
-  <div class="stat-item"><span class="stat-num gold">100%</span><span class="stat-label">Hors-ligne</span></div>
+  <div class="stat-item"><span class="stat-num gold">RFC 3161</span><span class="stat-label">Preuve horodatée</span></div>
 </div>
 
 <!-- DOWNLOAD BANNER -->
@@ -945,14 +945,14 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
       <div class="feature-num">02</div>
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       <div class="feature-title">GÉOPHARE UTM</div>
-      <p class="feature-desc">Coordonnées GPS sub-mètre, azimut, zone UTM et chaînage PK sur chaque capture. Lien Google Maps cliquable dans chaque PDF exporté.</p>
+      <p class="feature-desc">Coordonnées GPS, azimut, zone UTM et chaînage PK sur chaque capture. Lien Google Maps cliquable dans chaque PDF exporté.</p>
     </div>
     <div class="feature-card">
       <div class="feature-accent"></div>
       <div class="feature-num">03</div>
       <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-      <div class="feature-title">SIGNATURES EIDAS</div>
-      <p class="feature-desc">Horodatage RFC 3161 via FreeTSA. Valeur juridique reconnue internationalement. Certificat .tsr téléchargeable. Conforme au règlement UE 910/2014.</p>
+      <div class="feature-title">SIGNATURE ET SCEAU HORODATÉ</div>
+      <p class="feature-desc">Signature tactile et horodatage RFC 3161 par une autorité d'horodatage indépendante. Toute modification après signature est détectée. Jeton .tsr téléchargeable.</p>
     </div>
     <div class="feature-card">
       <div class="feature-accent"></div>
@@ -1011,7 +1011,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
           <div class="silo-item">NC auto depuis essai non conforme</div>
           <div class="silo-item">Analyse échantillon IA Vision</div>
           <div class="silo-item">Bon de prélèvement numérique</div>
-          <div class="silo-item">Export PDF + email certifié</div>
+          <div class="silo-item">Export PDF + envoi par courriel</div>
           <div class="silo-item">Calcul géométrique aires & volumes</div>
         </div>
       </div>
@@ -1026,32 +1026,14 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
 <div class="pricing-section" id="tarifs">
   <div class="pricing-inner">
     <div class="section-label">Tarifs</div>
-    <h2 class="section-title">SIMPLE.<br>TRANSPARENT.</h2>
-    <p class="section-subtitle">Essai gratuit 30 jours. Annulation à tout moment.</p>
+    <h2 class="section-title">POUR LES<br>ORGANISATIONS.</h2>
+    <p class="section-subtitle">Firmes de génie-conseil, laboratoires, municipalités. Essai gratuit 30 jours pour votre entreprise.</p>
     <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-name">SOLO</div>
-        <div class="price-users">1 utilisateur</div>
-        <div class="price-tagline">Pour l'artisan ou l'indépendant</div>
-        <div class="price-amount"><span class="price-num">24</span><span class="price-period">$ / mois</span></div>
-        <p class="price-trial">
-          <svg class="icon-inline" style="width:10px;height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          Essai gratuit 30 jours
-        </p>
-        <div class="price-features">
-          <div class="price-feature">Projets illimités</div>
-          <div class="price-feature">Tous les modules terrain</div>
-          <div class="price-feature">PDF + Email illimités</div>
-          <div class="price-feature">Géophare + Météo auto</div>
-          <div class="price-feature">Support email</div>
-        </div>
-        <a href="#contact" class="price-btn">BIENTÔT DISPONIBLE</a>
-      </div>
       <div class="price-card popular">
         <div class="price-badge">LA PLUS POPULAIRE</div>
         <div class="price-name">ÉQUIPE</div>
         <div class="price-users">Jusqu'à 5 utilisateurs</div>
-        <div class="price-tagline">Pour une petite équipe de chantier</div>
+        <div class="price-tagline">Pour les firmes et les équipes de surveillance</div>
         <div class="price-amount"><span class="price-num">89</span><span class="price-period">$ / mois</span></div>
         <p class="price-trial">
           <svg class="icon-inline" style="width:10px;height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -1059,7 +1041,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
         </p>
         <div class="price-features">
           <div class="price-feature">Chat d'équipe intégré</div>
-          <div class="price-feature">Tout Solo inclus</div>
+          <div class="price-feature">Rapports dictés, photos analysées, preuve scellée RFC 3161</div>
           <div class="price-feature">Tableau de bord multi-chantiers</div>
           <div class="price-feature">Filtre par projet</div>
           <div class="price-feature">Support prioritaire</div>
