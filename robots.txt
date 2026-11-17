@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /account
+
+Sitemap: https://civimme.com/sitemap.xml

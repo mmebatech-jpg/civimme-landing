@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Civimme — Intelligence Terrain</title>
 <meta name="description" content="L'application mobile qui remplace le carnet papier sur le chantier. IA, géolocalisation, rapports signés et scellés. Pour les firmes de génie-conseil, laboratoires et municipalités.">
+<link rel="canonical" href="https://civimme.com/">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Civimme">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:url" content="https://civimme.com/">
+<meta property="og:title" content="Civimme — le carnet de chantier, signé et scellé">
+<meta property="og:description" content="Rapports de chantier signés et scellés, photos, essais, dictée et IA. Pour les firmes de génie-conseil, laboratoires et municipalités.">
+<meta property="og:image" content="https://civimme.com/og-civimme.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Azeret+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -862,7 +877,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
+  <a href="/" class="nav-logo" aria-label="Civimme — accueil">
     <img src="adaptive-icon-foreground.png" alt="Civimme logo">
     <span class="nav-logo-text">CIV<span>I</span>MME</span>
   </a>
@@ -1129,7 +1144,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
   </div>
   <div class="footer-text">© 2026 CIVIMME · INTELLIGENCE TERRAIN · TOUS DROITS RÉSERVÉS</div>
   <div class="footer-text"><a href="mailto:contact@civimme.com" style="color:inherit;text-decoration:none;">contact@civimme.com</a></div>
-  <div class="footer-text"><a href="privacy-policy.html" style="color:inherit;text-decoration:underline;">Politique de confidentialité</a></div>
+  <div class="footer-text"><a href="/privacy-policy" style="color:inherit;text-decoration:underline;">Politique de confidentialité</a> · <a href="/conditions" style="color:inherit;text-decoration:underline;">Conditions d'utilisation</a></div>
 </footer>
 
 <script>
@@ -1141,8 +1156,13 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
   form.addEventListener('submit', function(e){
     e.preventDefault();
     fb.className = 'contact-feedback';
-    btn.disabled = true; btn.textContent = 'ENVOI EN COURS…';
     var d = new FormData(form);
+    var nm = String(d.get('name') || '').trim(), em = String(d.get('email') || '').trim(), msg = String(d.get('message') || '').trim();
+    var bad = !nm ? 'Indiquez votre nom.'
+      : !/^[^@\s]+@[^@\s]+[.][^@\s]+$/.test(em) ? 'Indiquez une adresse courriel valide.'
+      : msg.length < 10 ? 'Écrivez un message d’au moins 10 caractères.' : '';
+    if (bad) { fb.className = 'contact-feedback err'; fb.textContent = bad; return; }
+    btn.disabled = true; btn.textContent = 'ENVOI EN COURS…';
     fetch('https://api.civimme.com/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1154,20 +1174,22 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
         website: d.get('website') || ''
       })
     })
-    .then(function(r){ return r.ok ? r.json() : r.json().then(function(j){ throw new Error(j.detail || 'err'); }); })
+    .then(function(r){ if (r.status === 429) throw new Error('trop'); return r.ok ? r.json() : r.json().then(function(j){ throw new Error(j.detail || 'err'); }); })
     .then(function(){
       fb.className = 'contact-feedback ok';
       fb.textContent = 'Message envoyé. Merci, nous revenons vers vous rapidement.';
       form.reset();
     })
-    .catch(function(){
+    .catch(function(err){
       fb.className = 'contact-feedback err';
-      fb.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
+      fb.textContent = (err && err.message === 'trop') ? "Trop d'envois en peu de temps. Réessayez dans une minute."
+        : "L'envoi a échoué. Vérifiez votre connexion et réessayez, ou écrivez à contact@civimme.com.";
     })
     .then(function(){ btn.disabled = false; btn.textContent = 'ENVOYER LE MESSAGE'; });
   });
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
