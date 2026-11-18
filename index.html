@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Civimme">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:url" content="https://civimme.com/">
-<meta property="og:title" content="Civimme — le carnet de chantier, signé et scellé">
+<meta property="og:title" content="Civimme — la preuve de chantier, signée et scellée">
 <meta property="og:description" content="Rapports de chantier signés et scellés, photos, essais, dictée et IA. Pour les firmes de génie-conseil, laboratoires et municipalités.">
 <meta property="og:image" content="https://civimme.com/og-civimme.png">
 <meta property="og:image:width" content="1200">
@@ -890,6 +890,88 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
   max-width: 640px;
 }
 @media (max-width: 768px) { .mission { padding-top: 56px; padding-bottom: 24px; } }
+
+/* ═══ LISIBILITÉ (texte plus grand, façon apple.com) ═══
+   Les paragraphes passent dans la police système (San Francisco sur Apple, Segoe sur Windows,
+   Roboto sur Android) en 17 à 21 px ; les petites étiquettes gardent la police mono, agrandie. */
+:root { --read: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+nav { height: 64px; }
+.nav-logo img { height: 36px; width: 36px; }
+.nav-logo-text { font-size: 26px; }
+.nav-links a { font-family: var(--read); font-size: 15px; letter-spacing: 0; text-transform: none; }
+.nav-cta { padding: 10px 18px; border-radius: 980px; }
+.hero { padding-top: 140px; }
+.hero-overline { font-size: 13px; letter-spacing: 4px; }
+.hero-title { font-size: clamp(72px, 11vw, 168px); }
+.hero-subtitle { font-size: clamp(24px, 3vw, 36px); letter-spacing: 0.5px; }
+.hero-desc { font-family: var(--read); font-size: 21px; line-height: 1.6; letter-spacing: -0.01em; max-width: 680px; color: var(--ink-soft); }
+.btn-primary { font-size: 18px; letter-spacing: 2px; padding: 18px 36px; border-radius: 980px; }
+.btn-secondary { font-family: var(--read); font-size: 17px; letter-spacing: 0; padding: 17px 28px; border-radius: 980px; color: var(--ink); }
+.hero-trial { font-family: var(--read); font-size: 15px; letter-spacing: 0.2px; margin-top: 16px; }
+.icon-inline { width: 14px; height: 14px; }
+.stat-num { font-size: 60px; }
+.stat-label { font-size: 12px; letter-spacing: 3px; color: rgba(255,255,255,0.55); }
+.download-banner-text { font-family: var(--read); font-size: 16px; letter-spacing: 0.2px; }
+.btn-download { font-size: 16px; padding: 14px 30px; border-radius: 980px; }
+section { padding: 120px 40px; }
+.section-label { font-size: 13px; letter-spacing: 5px; }
+.section-title { font-size: clamp(52px, 7vw, 104px); }
+.section-subtitle { font-size: 28px; line-height: 1.35; }
+.mission-text { font-size: clamp(38px, 5.5vw, 68px); }
+.mission-note { font-family: var(--read); font-size: 19px; line-height: 1.6; max-width: 720px; }
+.feature-card { padding: 44px 36px; }
+.feature-icon { width: 32px; height: 32px; }
+.feature-title { font-size: 28px; }
+.feature-desc { font-family: var(--read); font-size: 17px; line-height: 1.6; letter-spacing: -0.005em; }
+.silo-dept { font-size: 12px; }
+.silo-title { font-size: 34px; }
+.silo-item { font-family: var(--read); font-size: 17px; letter-spacing: 0; padding: 12px 0; }
+.silos-note { font-family: var(--read); font-size: 14px; color: var(--ink-muted); margin-top: 28px; text-align: center; }
+.price-badge { font-size: 11px; }
+.price-name { font-size: 38px; }
+.price-users { font-family: var(--read); font-size: 16px; letter-spacing: 0; }
+.price-tagline { font-size: 21px; }
+.price-num { font-size: 68px; }
+.price-period { font-family: var(--read); font-size: 16px; }
+.price-trial { font-family: var(--read); font-size: 15px; }
+.price-feature { font-family: var(--read); font-size: 17px; padding: 12px 0; }
+.price-btn { font-size: 17px; padding: 16px; border-radius: 980px; }
+.price-note { font-family: var(--read); font-size: 16px; letter-spacing: 0; line-height: 1.7; }
+.cta-label { font-size: 13px; }
+.cta-title { font-size: clamp(56px, 9vw, 120px); }
+.cta-sub { font-size: 28px; color: rgba(255,255,255,0.6); }
+.cta-btn { font-size: 19px; padding: 20px 52px; border-radius: 980px; }
+.cta-note { font-family: var(--read); font-size: 14px; letter-spacing: 1px; color: rgba(255,255,255,0.5); }
+.contact-email-label { font-size: 12px; }
+.contact-email-value { font-size: 30px; }
+.contact-form-label { font-size: 13px; }
+.contact-field { font-family: var(--read); font-size: 17px; letter-spacing: 0; padding: 16px 18px; border-radius: 12px; }
+.contact-field::placeholder { color: #8A8A8A; }
+textarea.contact-field { font-family: var(--read); }
+.contact-feedback { font-family: var(--read); font-size: 16px; letter-spacing: 0; }
+.contact-submit { font-size: 18px; border-radius: 980px; }
+.footer-logo-text { font-size: 22px; color: rgba(255,255,255,0.6); }
+.footer-text { font-family: var(--read); font-size: 14px; letter-spacing: 0.3px; color: rgba(255,255,255,0.6); }
+@media (max-width: 768px) {
+  nav { height: 60px; }
+  .hero { padding: 110px 20px 64px; }
+  .hero-title { font-size: clamp(56px, 16vw, 96px); }
+  .hero-title, .section-title, .cta-title { overflow-wrap: break-word; }
+  .contact-email-value { font-size: 24px; overflow-wrap: anywhere; }
+  .hero-desc { font-size: 19px; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+  .btn-primary, .btn-secondary { text-align: center; }
+  section { padding: 72px 20px; }
+  .section-title { font-size: clamp(42px, 12vw, 72px); }
+  .section-subtitle { font-size: 23px; }
+  .mission-note { font-size: 18px; }
+  .feature-desc, .silo-item, .price-feature { font-size: 17px; }
+  .price-note { font-size: 16px; }
+  .stats-bar { gap: 32px 48px; }
+  .stat-num { font-size: 48px; }
+  .footer-text { font-size: 14px; }
+}
 </style>
 </head>
 <body>
@@ -1064,7 +1146,7 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
         </div>
       </div>
     </div>
-    <p style="font-family:'Azeret Mono',monospace;font-size:9px;color:var(--ink-muted);margin-top:24px;text-align:center;letter-spacing:1px;">
+    <p class="silos-note">
       Compagnie X (Surveillance) et Compagnie Y (Laboratoire) — données séparées légalement. Aucun partage possible.
     </p>
   </div>
