@@ -869,6 +869,27 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
   .contact-field { font-size: 15px; }
   .nav-links a { font-size: 13px; }
 }
+
+/* MISSION */
+.mission { padding-top: 80px; padding-bottom: 40px; }
+.mission-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 1.12;
+  color: var(--ink);
+  max-width: 960px;
+  margin: 0;
+}
+.mission-note {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--ink-muted);
+  margin-top: 24px;
+  max-width: 640px;
+}
+@media (max-width: 768px) { .mission { padding-top: 56px; padding-bottom: 24px; } }
 </style>
 </head>
 <body>
@@ -945,6 +966,13 @@ textarea.contact-field { resize: vertical; min-height: 120px; font-family: 'Azer
   <a href="https://apps.apple.com/app/civimme/id6816571994" target="_blank" rel="noopener" class="btn-download">APP STORE</a>
   <a href="https://play.google.com/store/apps/details?id=app.emergent.constructionvisionc688dd7e" target="_blank" rel="noopener" class="btn-download">GOOGLE PLAY</a>
 </div>
+
+<!-- MISSION -->
+<section class="mission" id="mission" aria-labelledby="mission-titre">
+  <div class="section-label" id="mission-titre">Notre mission</div>
+  <p class="mission-text">Que chaque ouvrage construit dans le monde ait une preuve vérifiable.</p>
+  <p class="mission-note">Ce qui est fait sur le chantier — observé, mesuré, photographié — est signé, scellé et horodaté au moment même. Personne n'a à le ressaisir, personne ne peut le modifier en silence.</p>
+</section>
 
 <!-- FEATURES -->
 <section id="fonctionnalites">
